@@ -44,37 +44,7 @@ class _MyHomePageState extends State<HomePageScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-              Text("username" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'username:',
-                ),
-              ),
 
-              Text("phone number" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'phone number:',
-                ),
-              ),
-              Text("email" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'email:',
-                ),
-              ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
-                ),
-                onPressed: () {
-
-                },
-                child: Text('NEXT'),
-              )
             ],
           ),
         ),
