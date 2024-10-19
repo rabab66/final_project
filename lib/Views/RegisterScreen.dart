@@ -56,33 +56,28 @@ class _MyHomePageState extends State<RegisterScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
+              Text("username" ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'username:',
+                ),
+              ),
+
+              Text("phone number" ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'phone number:',
+                ),
+              ),
               Text("email" ),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'email',
+                  hintText: 'email:',
                 ),
-              ),
-              Text("first name:" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'first name',
-                ),
-              ),
-              Text("second name:" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'second name',
-                ),
-              ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
-                ),
-                onPressed: () { },
-                child: Text('Register'),
               ),
               TextButton(
                 style: ButtonStyle(
@@ -91,7 +86,7 @@ class _MyHomePageState extends State<RegisterScreen> {
                 onPressed: () {
 
                 },
-                child: Text('create a new acount'),
+                child: Text('NEXT'),
               )
             ],
           ),

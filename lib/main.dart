@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Login'),
     );
   }
 }
@@ -67,29 +67,23 @@ class _MyHomePageState extends State<MyHomePage> {
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'email',
+                  hintText: 'email:',
                 ),
               ),
-              Text("first name:" ),
+              Text("pasword" ),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'first name',
+                  hintText: 'pasword:',
                 ),
               ),
-              Text("second name:" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'second name',
-                ),
-              ),
+
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: () { },
-                child: Text('Register'),
+                child: Text('login'),
               ),
               TextButton(
                 style: ButtonStyle(
@@ -98,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const RegisterScreen(title: "raban")),
+                  MaterialPageRoute(builder: (context) => const RegisterScreen(title: "rabab")),
                 );
 
 
