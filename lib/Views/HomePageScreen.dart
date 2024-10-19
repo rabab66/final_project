@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
 
 
- /* @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}*/
-
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key, required this.title});
+class HomePageScreen extends StatefulWidget {
+  const HomePageScreen({super.key, required this.title});
 
 
   final String title;
 
   @override
-  State<RegisterScreen> createState() => _MyHomePageState();
+  State<HomePageScreen> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<RegisterScreen> {
+class _MyHomePageState extends State<HomePageScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -84,10 +71,7 @@ class _MyHomePageState extends State<RegisterScreen> {
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RegisterScreen(title: "HomePage")),
-                  );
+
                 },
                 child: Text('NEXT'),
               )
