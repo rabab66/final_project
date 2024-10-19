@@ -1,3 +1,4 @@
+import 'package:finalproject/Views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -94,7 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
-                onPressed: () { },
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterScreen(title: "raban")),
+                );
+
+
+                  },
                 child: Text('create a new acount'),
               )
             ],
