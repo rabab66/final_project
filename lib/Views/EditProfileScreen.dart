@@ -1,8 +1,7 @@
-import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
 
 
- /* @override
+/* @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
@@ -16,17 +15,17 @@ import 'package:flutter/material.dart';
   }
 }*/
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key, required this.title});
+class EditProfileScreen extends StatefulWidget {
+  const  EditProfileScreen({super.key, required this.title});
 
 
   final String title;
 
   @override
-  State<RegisterScreen> createState() => _MyHomePageState();
+  State<EditProfileScreen> createState() => EditProfileScreenPageState();
 }
 
-class _MyHomePageState extends State<RegisterScreen> {
+class EditProfileScreenPageState extends State<EditProfileScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -47,8 +46,8 @@ class _MyHomePageState extends State<RegisterScreen> {
       body: Center(
 
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.height * 0.6,
 
           decoration: BoxDecoration(
               color: Colors.white,
@@ -66,13 +65,7 @@ class _MyHomePageState extends State<RegisterScreen> {
                 ),
               ),
 
-              Text("phone number" ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'phone number:',
-                ),
-              ),
+
               Text("email" ),
               TextField(
                 decoration: InputDecoration(
@@ -80,18 +73,7 @@ class _MyHomePageState extends State<RegisterScreen> {
                   hintText: 'email:',
                 ),
               ),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
-                  );
-                },
-                child: Text('NEXT'),
-              )
+
             ],
           ),
         ),

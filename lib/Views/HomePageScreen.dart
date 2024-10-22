@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'EditProfileScreen.dart';
+
 
 
 class HomePageScreen extends StatefulWidget {
@@ -33,17 +35,31 @@ class _MyHomePageState extends State<HomePageScreen> {
       body: Center(
 
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.6,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.9,
 
           decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(50))
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
+                ),
+                onPressed: (
+                ) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EditProfileScreen(title: " EditPrifile")),
+                  );
 
+
+                },
+                child: Icon(Icons.account_circle)
+              )
 
             ],
           ),
