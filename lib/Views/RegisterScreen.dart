@@ -47,8 +47,8 @@ class _MyHomePageState extends State<RegisterScreen> {
       body: Center(
 
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.height * 0.6,
 
           decoration: BoxDecoration(
               color: Colors.white,

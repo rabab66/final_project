@@ -73,7 +73,15 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
                   hintText: 'email:',
                 ),
               ),
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
+                ),
+                onPressed: () {
 
+                },
+                child: Text('Save'),
+              )
             ],
           ),
         ),

@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
 
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.height * 0.6,
           
           decoration: BoxDecoration(
             color: Colors.white,
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const RegisterScreen(title: "rabab")),
+                  MaterialPageRoute(builder: (context) => const RegisterScreen(title: "Register")),
                 );
 
 
