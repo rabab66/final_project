@@ -78,13 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
 
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
-                ),
-                onPressed: () { },
-                child: Text('login'),
-              ),
+
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),

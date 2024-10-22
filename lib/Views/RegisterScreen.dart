@@ -23,12 +23,15 @@ class RegisterScreen extends StatefulWidget {
   final String title;
 
   @override
-  State<RegisterScreen> createState() => _MyHomePageState();
+  State<RegisterScreen> createState() => RegisterscreenPageState();
 }
 
-class _MyHomePageState extends State<RegisterScreen> {
+class RegisterscreenPageState extends State<RegisterScreen> {
   int _counter = 0;
 
+  final _txtUserName=TextEditingController();
+  final _txtPhoneNumber=TextEditingController();
+  final _txtEmail=TextEditingController();
   void _incrementCounter() {
     setState(() {
 
@@ -60,6 +63,7 @@ class _MyHomePageState extends State<RegisterScreen> {
 
               Text("username" ),
               TextField(
+                controller: _txtUserName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'username:',
@@ -68,6 +72,7 @@ class _MyHomePageState extends State<RegisterScreen> {
 
               Text("phone number" ),
               TextField(
+                controller: _txtPhoneNumber,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'phone number:',
@@ -75,6 +80,8 @@ class _MyHomePageState extends State<RegisterScreen> {
               ),
               Text("email" ),
               TextField(
+                controller: _txtEmail,
+
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'email:',
@@ -84,13 +91,38 @@ class _MyHomePageState extends State<RegisterScreen> {
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
+                onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('AlertDialog Title'),
+                    content:  Text(_txtUserName.text+"-"+ _txtPhoneNumber.text+"-"+ _txtEmail.text),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'OK'),
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ),
+                ),
+                child: const Text('Login'),
+              ),
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
+                ),
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
                   );
+
+
                 },
-                child: Text('NEXT'),
+                child: Text('Next'),
               )
             ],
           ),
