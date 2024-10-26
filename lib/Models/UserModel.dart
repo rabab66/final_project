@@ -5,6 +5,7 @@ class User{
     this.name="",
     this.phone="",
     this.note="",
+    this.addres="",
 
 
 });
@@ -12,12 +13,13 @@ class User{
   String name;
   String phone;
   String note;
-
+ String addres;
   factory User.fromJson(Map<String, dynamic> json) => User(
   id: json["id"],
   name: json["name"],
   phone: json["phone"],
   note: json["note"],
+    addres:json["addres"],
   );
 
 
@@ -27,7 +29,7 @@ class User{
     "name":name,
     "phone":phone,
     "note":note,
-
+    "addres":addres,
 
 
   };
