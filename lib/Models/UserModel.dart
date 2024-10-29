@@ -29,7 +29,7 @@ class User{
     "name":name,
     "phone":phone,
     "note":note,
-    "addres":addres,
+    "adress":addres,
 
 
   };
