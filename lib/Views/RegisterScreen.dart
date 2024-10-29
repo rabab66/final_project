@@ -1,6 +1,8 @@
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../Utils/Utils.dart';
+
 
  /* @override
   Widget build(BuildContext context) {
@@ -91,23 +93,10 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
-                onPressed: () => showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('AlertDialog Title'),
-                    content:  Text(_txtUserName.text+"-"+ _txtPhoneNumber.text+"-"+ _txtEmail.text),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  ),
-                ),
+                onPressed: (){
+                  var Uti =new Utils();
+                  Uti.showMyDialog(context,_txtUserName.text,_txtEmail.text);
+                },
                 child: const Text('Login'),
               ),
               TextButton(
@@ -117,7 +106,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage+++++++++++")),
+                    MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
                   );
 
 
@@ -131,5 +120,5 @@ class RegisterscreenPageState extends State<RegisterScreen> {
 
 
     );
-  }
+   }
 }
