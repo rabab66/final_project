@@ -1,6 +1,6 @@
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:finalproject/Utils/dp.dart';
 import '../Utils/Utils.dart';
 
 
@@ -94,6 +94,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: (){
+
                   var Uti =new Utils();
                   Uti.showMyDialog(context,_txtUserName.text,_txtEmail.text);
                 },
@@ -104,6 +105,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: () {
+                  insertUser("aa","bb","cc");
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
