@@ -1,12 +1,13 @@
 
 
 
+import 'package:finalproject/Models/UserModel.dart';
 import 'package:mysql1/mysql1.dart';
 
 var _conn;
 void main(){
   showUsers();
-  insertUser("aa","bb","cc");
+  insertUser(User());
 }
 
 
@@ -14,7 +15,7 @@ void main(){
 
 Future<void> showUsers() async {
   var settings = new ConnectionSettings(
-      host: 'localhost',
+      host: '10.0.2.2',
       port: 3306,
       user: 'root',
       db: 'rabab12'
@@ -31,7 +32,7 @@ Future<void> showUsers() async {
 
 Future<void> insertUser(password,name,email) async {
   var settings = new ConnectionSettings(
-      host: 'localhost',
+      host: '10.0.2.2',
       port: 3306,
       user: 'root',
       db: 'rabab12'

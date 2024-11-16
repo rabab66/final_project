@@ -97,6 +97,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
 
                   var Uti =new Utils();
                   Uti.showMyDialog(context,_txtUserName.text,_txtEmail.text);
+                  insertUser("test", "rabab","omar");
                 },
                 child: const Text('Login'),
               ),
