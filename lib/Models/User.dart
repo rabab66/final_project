@@ -3,23 +3,22 @@ class User{
 
     this.id= "",
     this.name="",
-    this.phone="",
-    this.note="",
-    this.addres="",
+    this.email="",
+    this.password="",
 
 
 });
   String id;
+  String password;
+  String email;
   String name;
-  String phone;
-  String note;
- String addres;
+
   factory User.fromJson(Map<String, dynamic> json) => User(
   id: json["id"],
   name: json["name"],
-  phone: json["phone"],
-  note: json["note"],
-    addres:json["addres"],
+    password: json["password"],
+  email: json["email"],
+
   );
 
 
@@ -27,9 +26,9 @@ class User{
 
     "id":id,
     "name":name,
-    "phone":phone,
-    "note":note,
-    "adress":addres,
+    "email":email,
+    "password":password,
+
 
 
   };

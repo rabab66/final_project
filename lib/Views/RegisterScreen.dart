@@ -1,6 +1,7 @@
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject/Utils/db.dart';
+import '../Models/User.dart';
 import '../Utils/Utils.dart';
 
 
@@ -32,7 +33,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   int _counter = 0;
 
   final _txtUserName=TextEditingController();
-  final _txtPhoneNumber=TextEditingController();
+  final _txtPassword=TextEditingController();
   final _txtEmail=TextEditingController();
   void _incrementCounter() {
     setState(() {
@@ -41,6 +42,26 @@ class RegisterscreenPageState extends State<RegisterScreen> {
     });
   }
 
+
+  void insertUserFunc() {
+    if (_txtUserName.text != "") {
+      var us = new User();
+      us.name = _txtUserName.text;
+      us.email = _txtEmail.text;
+      us.password = _txtPassword.text;
+      insertUser(us);
+      var uti = new Utils();
+      uti.showMyDialog(context, "success", "you registed successfully");
+      _txtUserName.text = "";
+      _txtEmail.text = "";
+      _txtPassword.text = "";
+      _txtPassword.text="";
+    }
+    else {
+      var uti = new Utils();
+      uti.showMyDialog(context, "Required", "Please insert First name");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,14 +93,6 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 ),
               ),
 
-              Text("phone number" ),
-              TextField(
-                controller: _txtPhoneNumber,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'phone number:',
-                ),
-              ),
               Text("email" ),
               TextField(
                 controller: _txtEmail,
@@ -89,6 +102,15 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                   hintText: 'email:',
                 ),
               ),
+              Text("password" ),
+              TextField(
+                controller: _txtPassword,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'phone number:',
+                ),
+              ),
+
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
@@ -97,7 +119,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
 
                   var Uti =new Utils();
                   Uti.showMyDialog(context,_txtUserName.text,_txtEmail.text);
-                  insertUser("test", "rabab","omar");
+                  insertUser;
                 },
                 child: const Text('Login'),
               ),
@@ -106,7 +128,8 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: () {
-                  insertUser("aa","bb","cc");
+                  insertUserFunc();
+                  print("rabab6");
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
