@@ -27,7 +27,7 @@ Future<void> showUsers() async {
 }
 
 
-Future<void> insertUser(password,name,email) async {
+Future<void> insertUser(User user) async {
   var settings = new ConnectionSettings(
       host: '10.0.2.2',
       port: 3306,
