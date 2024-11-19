@@ -3,21 +3,21 @@ import 'dart:ffi';
 class Book{
   Book({
 
-    this.id= 0,
-    this.bookname="",
+    this.bookID= 0,
+    this.bookName="",
     this.author="",
     this.price=0,
 
 
 
   });
-  int id;
-  String bookname;
+  int bookID;
+  String bookName;
   String author;
   double price;
   factory Book.fromJson(Map<String, dynamic> json) => Book(
-    id: json["id"],
-    bookname: json["bookname"],
+    bookID: json["bookID"],
+    bookName: json["bookName"],
     author: json["author"],
     price: json["price"],
 
@@ -26,8 +26,8 @@ class Book{
 
   Map<String , dynamic> toJson() => {
 
-    "id":id,
-    "bookname":bookname,
+    "bookID":bookID,
+    "bookName":bookName,
     "author":author,
     "price":price,
 

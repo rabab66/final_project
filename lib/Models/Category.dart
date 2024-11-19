@@ -1,22 +1,22 @@
 class Category{
   Category({
 
-    this.id= "",
-    this.fiction="",
-    this.scientific="",
+    this.caregoryID= 0,
+    this.	cateroryName="",
+
 
 
 
 
 });
-  String id;
-  String scientific;
-  String fiction;
+  int caregoryID;
+  String 	cateroryName;
+
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-  id: json["id"],
-    fiction: json["fiction"],
-    scientific: json["scientific"],
+    caregoryID: json["caregoryID"],
+    cateroryName: json["cateroryName"],
+
 
 
   );
@@ -24,9 +24,9 @@ class Category{
 
   Map<String , dynamic> toJson() => {
 
-    "id":id,
-    "fiction":fiction,
-    "scientific":scientific,
+    "caregoryID":caregoryID,
+    "	cateroryName":	cateroryName,
+
 
 
 
