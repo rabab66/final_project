@@ -1,7 +1,7 @@
 
 
 
-import 'package:finalproject/Models/UserModel.dart';
+import 'package:finalproject/Models/User.dart';
 import 'package:mysql1/mysql1.dart';
 
 var _conn;
