@@ -129,7 +129,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 ),
                 onPressed: () {
                   insertUserFunc();
-                  print("rabab6");
+                 
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
