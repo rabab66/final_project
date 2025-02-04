@@ -111,25 +111,14 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 ),
               ),
 
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
-                ),
-                onPressed: (){
 
-                  var Uti =new Utils();
-                  Uti.showMyDialog(context,_txtUserName.text,_txtEmail.text);
-                  insertUser;
-                },
-                child: const Text('Login'),
-              ),
               TextButton(
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
                 ),
                 onPressed: () {
                   insertUserFunc();
-                 
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
