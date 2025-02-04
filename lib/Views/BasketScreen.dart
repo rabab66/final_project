@@ -1,4 +1,5 @@
 
+import 'package:finalproject/Views/CheckoutScreen.dart';
 import 'package:flutter/material.dart';
 
 class BasketScreen extends StatefulWidget {
@@ -49,6 +50,11 @@ class _BasketScreenState extends State<BasketScreen> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CheckoutScreen(totalPrice: totalPrice)),
+                );
+                
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Proceeding to checkout...")));
               },
               child: Text("Checkout"),
