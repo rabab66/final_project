@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:finalproject/Views/BasketScreen.dart';
+import 'package:finalproject/Views/BookshelfScreen.dart';
 import 'EditProfileScreen.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -18,13 +19,12 @@ class _MyHomePageState extends State<HomePageScreen> {
   final List<String> categories = ["Business", "Design", "Education", "History", "Literature"];
 
   final List<Map<String, String>> books = [
-    {"title": "Rich Dad Poor Dad", "image": "assets/rich_dad.png"},
-    {"title": "The Lean Startup", "image": "assets/lean_startup.png"},
-    {"title": "The 4-Hour Work Week", "image": "assets/4hour_workweek.png"},
-    {"title": "The Subtle Art of Not Giving a F*ck", "image": "assets/subtle_art.png"},
-    {"title": "The Modern Habit", "image": "assets/habit.png"},
-    {"title": "Think and Grow Rich", "image": "assets/think_grow_rich.png"},
+    {"title": "Harry Potter", "image": "assets/photos/harrypotter.jpg"},
+    {"title": "The Fault in Our Stars", "image": "assets/photos/Ourstar.jpg"},
+    {"title": "Rich Dad Poor Dad", "image": "assets/photos/richdad.jpg"},
+    {"title": "Wonder", "image": "assets/photos/wonder.jpg"},
   ];
+
 
   List<Map<String, String>> filteredBooks = [];
 
@@ -43,22 +43,22 @@ class _MyHomePageState extends State<HomePageScreen> {
     });
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
+        backgroundColor: Color(0xFFC8E6C9),
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
+          backgroundColor: Color(0xFF2E7D32),
+          title: Text(
+            widget.title,
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          elevation: 0,
           bottom: TabBar(
             isScrollable: true,
+            indicatorColor: Colors.white,
             tabs: categories.map((category) => Tab(text: category)).toList(),
           ),
         ),
@@ -71,10 +71,14 @@ class _MyHomePageState extends State<HomePageScreen> {
                 decoration: InputDecoration(
                   labelText: "Search Books",
                   hintText: "Enter book title...",
+                  filled: true,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
                   ),
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: Icon(Icons.search, color: Color(0xFF2E7D32)),
+                  contentPadding: EdgeInsets.symmetric(vertical: 10),
                 ),
               ),
             ),
@@ -89,17 +93,37 @@ class _MyHomePageState extends State<HomePageScreen> {
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
                       ),
-                      itemCount: filteredBooks.length,
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Expanded(
-                              child: Image.asset(filteredBooks[index]["image"]!, fit: BoxFit.cover),
-                            ),
-                            Text(filteredBooks[index]["title"]!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                          ],
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)], // Optional shadow for the cards
+                          ),
+                          child: Column(
+                            children: [
+                              // Adjust the image size here
+                              ClipRRect(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                                child: Image.asset(
+                                  filteredBooks[index]["image"]!,
+                                  width: 100,  // Set a fixed width
+                                  height: 150, // Set a fixed height
+                                  fit: BoxFit.cover,  // Ensure the image is scaled correctly
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  filteredBooks[index]["title"]!,
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       },
+
                     ),
                   );
                 }).toList(),
@@ -108,18 +132,31 @@ class _MyHomePageState extends State<HomePageScreen> {
           ],
         ),
         bottomNavigationBar: Container(
-          color: Colors.white,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+          ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: GNav(
               backgroundColor: Colors.white,
-              color: Colors.pinkAccent,
-              activeColor: Colors.pinkAccent,
-              tabBackgroundColor: Colors.grey.shade800,
+              color: Colors.grey,
+              activeColor: Colors.white,
+              tabBackgroundColor: Color(0xFF2E7D32),
               padding: EdgeInsets.all(16),
               gap: 8,
               tabs: [
                 GButton(icon: Icons.home, text: "Home"),
+                GButton(
+                  icon: Icons.library_books,
+                  text: "Book Shelf",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BookshelfScreen()),
+                    );
+                  },
+                ),
                 GButton(
                   icon: Icons.shopping_basket,
                   text: "My Basket",

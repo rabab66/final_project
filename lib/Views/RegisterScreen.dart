@@ -4,25 +4,8 @@ import 'package:finalproject/Utils/db.dart';
 import '../Models/User.dart';
 import '../Utils/Utils.dart';
 
-
- /* @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyC:\Users\omare\Downloads\flutterdart --version
-HomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}*/
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
-
 
   final String title;
 
@@ -31,18 +14,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterscreenPageState extends State<RegisterScreen> {
-  int _counter = 0;
-
-  final _txtUserName=TextEditingController();
-  final _txtPassword=TextEditingController();
-  final _txtEmail=TextEditingController();
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
-
+  final _txtUserName = TextEditingController();
+  final _txtPassword = TextEditingController();
+  final _txtEmail = TextEditingController();
 
   void insertUserFunc() {
     if (_txtUserName.text != "") {
@@ -52,89 +26,117 @@ class RegisterscreenPageState extends State<RegisterScreen> {
       us.password = _txtPassword.text;
       insertUser(us);
       var uti = new Utils();
-      uti.showMyDialog(context, "success", "you registed successfully");
-      _txtUserName.text = "";
-      _txtEmail.text = "";
-      _txtPassword.text = "";
-      _txtPassword.text="";
-    }
-    else {
+      uti.showMyDialog(context, "success", "You have registered successfully");
+      _txtUserName.clear();
+      _txtEmail.clear();
+      _txtPassword.clear();
+    } else {
       var uti = new Utils();
-      uti.showMyDialog(context, "Required", "Please insert First name");
+      uti.showMyDialog(context, "Required", "Please insert your username");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
+        backgroundColor: Color(0xFF2E7D32),
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
-
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.6,
-          height: MediaQuery.of(context).size.height * 0.6,
-
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.7,
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(50))
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              Text("username" ),
-              TextField(
-                controller: _txtUserName,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'username:',
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Username",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ),
-
-              Text("email" ),
-              TextField(
-                controller: _txtEmail,
-
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'email:',
+                SizedBox(height: 10),
+                TextField(
+                  controller: _txtUserName,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your username',
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF2E7D32)),
+                    ),
+                  ),
                 ),
-              ),
-              Text("password" ),
-              TextField(
-                controller: _txtPassword,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'phone number:',
+                SizedBox(height: 20),
+                Text(
+                  "Email",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ),
-
-
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.pink),
+                SizedBox(height: 10),
+                TextField(
+                  controller: _txtEmail,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your email',
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF2E7D32)),
+                    ),
+                  ),
                 ),
-                onPressed: () {
-                  insertUserFunc();
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
-                  );
-
-
-                },
-                child: Text('Next'),
-              )
-            ],
+                SizedBox(height: 20),
+                Text(
+                  "Password",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  controller: _txtPassword,
+                  obscureText: true, // To hide the password text
+                  decoration: InputDecoration(
+                    hintText: 'Enter your password',
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF2E7D32)),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+                    insertUserFunc();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor : Color(0xFF2E7D32), // Green color for the button
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-
-
     );
-   }
+  }
 }
