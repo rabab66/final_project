@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:finalproject/Views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
+
+import '../Utils/Utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _txtEmail = TextEditingController();
   final _txtPassword = TextEditingController();
+  checkConction() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        // print('connected to internet');// print(result);// return 1;
+      }
+    } on SocketException catch (_) {
+      // print('not connected to internet');// print(result);
+      var uti = new Utils();
+      uti.showMyDialog(context, "אין אינטרנט", "האפליקציה דורשת חיבור לאינטרנט, נא להתחבר בבקשה");
+      return;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
