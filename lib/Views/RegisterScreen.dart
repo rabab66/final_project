@@ -1,8 +1,10 @@
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:finalproject/Utils/db.dart';
 import '../Models/User.dart';
 import '../Utils/Utils.dart';
+import 'package:http/http.dart' as http;
+import '../Utils/constants.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
@@ -21,12 +23,18 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   void insertUserFunc() {
     if (_txtUserName.text != "") {
       var us = new User();
-      us.name = _txtUserName.text;
+      us.username = _txtUserName.text;
       us.email = _txtEmail.text;
       us.password = _txtPassword.text;
-      insertUser(us);
+      insertUser(context, us);
       var uti = new Utils();
       uti.showMyDialog(context, "success", "You have registered successfully");
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
+      );
+
       _txtUserName.clear();
       _txtEmail.clear();
       _txtPassword.clear();
@@ -35,6 +43,26 @@ class RegisterscreenPageState extends State<RegisterScreen> {
       uti.showMyDialog(context, "Required", "Please insert your username");
     }
   }
+
+
+
+
+  Future insertUser(BuildContext context, User us) async {
+
+
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
+    var url = "users/insertUser.php?username=" + us.username + "&email=" + us.email +
+        "&password=" + us.password;
+    final response = await http.get(Uri.parse(serverPath + url));
+    // print(serverPath + url);
+    setState(() { });
+    Navigator.pop(context);
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +143,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 ElevatedButton(
                   onPressed: () {
                     insertUserFunc();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
-                    );
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor : Color(0xFF2E7D32), // Green color for the button
