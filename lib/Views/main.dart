@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:finalproject/Views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import '../Models/checkLoginModel.dart';
@@ -147,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     // For now, we will just navigate to the RegisterScreen
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const RegisterScreen(title: "Register")),
+                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "Home")),
                     );
                   },
                   style: ElevatedButton.styleFrom(

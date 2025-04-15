@@ -20,25 +20,29 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   final _txtPassword = TextEditingController();
   final _txtEmail = TextEditingController();
 
-  void insertUserFunc() {
-    if (_txtUserName.text != "") {
+  void insertUserFunc(
+      BuildContext context,
+      String UserName,
+      String Email,
+      String Password
+
+
+
+  ) {
+    if (_txtUserName.text != "" && _txtEmail.text != "" &&  _txtPassword.text != "" ) {
       var us = new User();
       us.username = _txtUserName.text;
       us.email = _txtEmail.text;
       us.password = _txtPassword.text;
       insertUser(context, us);
-      var uti = new Utils();
-      uti.showMyDialog(context, "success", "You have registered successfully");
+
 
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
       );
-
-      _txtUserName.clear();
-      _txtEmail.clear();
-      _txtPassword.clear();
-    } else {
+    }
+    else {
       var uti = new Utils();
       uti.showMyDialog(context, "Required", "Please insert your username");
     }
@@ -55,9 +59,9 @@ class RegisterscreenPageState extends State<RegisterScreen> {
     var url = "users/insertUser.php?username=" + us.username + "&email=" + us.email +
         "&password=" + us.password;
     final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath+url);
     // print(serverPath + url);
-    setState(() { });
-    Navigator.pop(context);
+    //setState(() { });
   }
 
 
@@ -142,7 +146,12 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    insertUserFunc();
+                    insertUserFunc(
+                      context,
+                      _txtUserName.text,
+                      _txtEmail.text,
+                      _txtPassword.text
+                    );
 
                   },
                   style: ElevatedButton.styleFrom(
