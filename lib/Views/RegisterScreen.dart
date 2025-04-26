@@ -1,6 +1,6 @@
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
-import '../Models/User.dart';
+  import '../Models/User.dart';
 import '../Utils/Utils.dart';
 import 'package:http/http.dart' as http;
 import '../Utils/constants.dart';
@@ -26,8 +26,6 @@ class RegisterscreenPageState extends State<RegisterScreen> {
       String Email,
       String Password
 
-
-
   ) {
     if (_txtUserName.text != "" && _txtEmail.text != "" &&  _txtPassword.text != "" ) {
       var us = new User();
@@ -37,10 +35,10 @@ class RegisterscreenPageState extends State<RegisterScreen> {
       insertUser(context, us);
 
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
-      );
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
+      // );
     }
     else {
       var uti = new Utils();
@@ -52,15 +50,12 @@ class RegisterscreenPageState extends State<RegisterScreen> {
 
 
   Future insertUser(BuildContext context, User us) async {
-
-
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
     //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
     var url = "users/insertUser.php?username=" + us.username + "&email=" + us.email +
         "&password=" + us.password;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath+url);
-    // print(serverPath + url);
     //setState(() { });
   }
 
