@@ -16,27 +16,23 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterscreenPageState extends State<RegisterScreen> {
-  final _txtUserName = TextEditingController();
+  final _txtFullName = TextEditingController();
   final _txtPassword = TextEditingController();
   final _txtEmail = TextEditingController();
 
   void insertUserFunc(
-
-
-
       BuildContext context,
       String UserName,
       String Email,
       String Password
 
   ) {
-    if (_txtUserName.text != "" && _txtEmail.text != "" &&  _txtPassword.text != "" ) {
+    if (_txtFullName.text != "" && _txtEmail.text != "" &&  _txtPassword.text != "" ) {
       var us = new User();
-      us.username = _txtUserName.text;
+      us.fullName = _txtFullName.text;
       us.email = _txtEmail.text;
       us.password = _txtPassword.text;
       insertUser(context, us);
-
 
       // Navigator.push(
       //   context,
@@ -55,7 +51,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   Future insertUser(BuildContext context, User us) async {
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
     //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
-    var url = "users/insertUser.php?username=" + us.username + "&email=" + us.email +
+    var url = "users/insertUser.php?fullName=" + us.fullName + "&email=" + us.email +
         "&password=" + us.password;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath+url);
@@ -96,9 +92,9 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 ),
                 SizedBox(height: 10),
                 TextField(
-                  controller: _txtUserName,
+                  controller: _txtFullName,
                   decoration: InputDecoration(
-                    hintText: 'Enter your username',
+                    hintText: 'Enter your fullName',
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(horizontal: 16),
                     focusedBorder: OutlineInputBorder(
@@ -146,7 +142,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                   onPressed: () {
                     insertUserFunc(
                       context,
-                      _txtUserName.text,
+                      _txtFullName.text,
                       _txtEmail.text,
                       _txtPassword.text
                     );

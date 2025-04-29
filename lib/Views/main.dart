@@ -7,6 +7,7 @@ import '../Models/checkLoginModel.dart';
 import '../Utils/Utils.dart';
 import '../Utils/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
     //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
-    var url = "login/checkLogin.php?userName=" + _txtEmail.text + "&password=" + _txtPassword.text;
+    var url = "Login/CheckLogin.php?userName=" + _txtEmail.text + "&password=" + _txtPassword.text;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
     // setState(() { });
@@ -69,6 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).result!);
       await prefs.setString('userType', checkLoginModel.fromJson(jsonDecode(response.body)).userTypeID!);
+      await prefs.setString('email', _txtEmail.text);
+      await prefs.setString('pass', _txtPassword.text);
       // return null;
     }
   }
@@ -90,8 +93,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
+
+  fillSavedPars()
+  async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? savedValue = prefs.get('myKey'); // Replace 'myKey' with your actual key
+
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // _txtEmail.text = prefs.getString("email").toString();
+    // _txtPassword.text = prefs.get("pass").toString();
+    // if(_txtEmail.text != "" && _txtPassword.text != "")
+    // {
+    //   checkLogin(context);
+    // }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    checkConction();
+    fillSavedPars();
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2E7D32),
