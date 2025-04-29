@@ -5,7 +5,7 @@ class Book{
     this.bookID= 0,
     this.bookName="",
     this.author="",
-    this.price=0,
+    this.price="",
     this.imageURL="",
     this.pdfURL="",
   });
@@ -14,7 +14,7 @@ class Book{
   int bookID;
   String bookName;
   String author;
-  double price;
+  String price;
   String imageURL;
   String pdfURL;
 

@@ -7,8 +7,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:finalproject/Views/BasketScreen.dart';
 import 'package:finalproject/Views/BookshelfScreen.dart';
 import '../Utils/constants.dart';
-import 'EditProfileScreen.dart';
 import 'package:http/http.dart' as http;
+
+import 'EditProfileScreen.dart';
 
 
 
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<HomePageScreen> {
     }
     _categories = arr;
     _categoryID = arr[0].categoryID;
+    getBooks();
     return arr;
   }
 
@@ -90,6 +92,14 @@ class _MyHomePageState extends State<HomePageScreen> {
   //   });
   // }
 
+
+  void _onTabTapped(int index) {
+    print('Tab $index tapped');
+    _categoryID = _categories[index].categoryID!;
+    getBooks();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -107,6 +117,7 @@ class _MyHomePageState extends State<HomePageScreen> {
             isScrollable: true,
             indicatorColor: Colors.white,
             tabs: _categories.map((category) => Tab(text: category.categoryName)).toList(),
+            onTap: _onTabTapped,
           ),
         ),
         body: Column(
@@ -135,6 +146,7 @@ class _MyHomePageState extends State<HomePageScreen> {
                   return Padding(
                     padding: EdgeInsets.all(16.0),
                     child: GridView.builder(
+                      itemCount: _books.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
@@ -206,8 +218,8 @@ class _MyHomePageState extends State<HomePageScreen> {
               tabs: [
                 GButton(icon: Icons.home, text: "Home"),
                 GButton(
-                  icon: Icons.library_books,
-                  text: "Book Shelf",
+                  icon: Icons.favorite,
+                  text: "Favorites",
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -216,12 +228,12 @@ class _MyHomePageState extends State<HomePageScreen> {
                   },
                 ),
                 GButton(
-                  icon: Icons.shopping_basket,
-                  text: "My Basket",
+                  icon: Icons.man,
+                  text: "Profile",
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BasketScreen()),
+                      MaterialPageRoute(builder: (context) => ProfileScreen()),
                     );
                   },
                 ),
