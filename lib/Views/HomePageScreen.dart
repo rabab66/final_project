@@ -5,10 +5,10 @@ import 'package:finalproject/Models/Category.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:finalproject/Views/BasketScreen.dart';
-import 'package:finalproject/Views/BookshelfScreen.dart';
+import 'package:finalproject/Views/FavoritesScreen.dart';
 import '../Utils/constants.dart';
 import 'package:http/http.dart' as http;
-
+import 'BookDetailsScreen.dart';
 import 'EditProfileScreen.dart';
 
 
@@ -153,32 +153,56 @@ class _MyHomePageState extends State<HomePageScreen> {
                         mainAxisSpacing: 10,
                       ),
                       itemBuilder: (context, index) {
-                        return Container(
+                        return
+                          GestureDetector(
+                            onTap: () {
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>
+                                    BookDetailsScreen(
+                                      book: Book(
+                                        bookID: _books[index].bookID,
+                                        bookName: _books[index].bookName,
+                                        author: _books[index].author,
+                                        imageURL: _books[index].imageURL,
+                                        // description:
+                                        // 'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway\'s interactions with mysterious millionaire Jay Gatsby and Gatsby\'s obsession to reunite with his former lover, Daisy Buchanan.',
+                                        // genre: 'Classic',
+                                        // rating: 4.5,
+                                        // totalPages: 180,
+                                        pdfURL: _books[index].pdfURL,
+                                        // currentPage: 45,
+                                      ),
+                                  ),
+                                ),
+                              );
+
+                          print('Container tapped!');
+                          // Add your logic here
+                        },
+                        child:
+
+                          Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)], // Optional shadow for the cards
                           ),
                           child: Column(
+
+
+
                             children: [
                               // Adjust the image size here
                               ClipRRect(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                                 child:
-
-                                // Image.asset(
-                                //   _books[index].im!,
-                                //   width: 100,  // Set a fixed width
-                                //   height: 150, // Set a fixed height
-                                //   fit: BoxFit.cover,  // Ensure the image is scaled correctly
-                                // ),
-
                                   CachedNetworkImage(
                                     imageUrl: _books[index].imageURL,
                                     placeholder: (context, url) => CircularProgressIndicator(),
                                     errorWidget: (context, url, error) => Icon(Icons.error),
                                     fit: BoxFit.cover,
                                   )
-
 
                               ),
                               Padding(
@@ -191,7 +215,8 @@ class _MyHomePageState extends State<HomePageScreen> {
                               ),
                             ],
                           ),
-                        );
+                        ),
+                          );
                       },
 
                     ),
@@ -223,7 +248,7 @@ class _MyHomePageState extends State<HomePageScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BookshelfScreen()),
+                      MaterialPageRoute(builder: (context) => FavoritesScreen()),
                     );
                   },
                 ),

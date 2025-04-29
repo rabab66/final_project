@@ -31,11 +31,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SharedPreferences {
-  static getInstance() {}
-
-  setString(String s, String t) {}
-}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -54,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future checkLogin(BuildContext context) async {
 
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
-    //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
+    //  String? token = prefs.getString("token");
     var url = "Login/CheckLogin.php?userName=" + _txtEmail.text + "&password=" + _txtPassword.text;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
@@ -62,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Navigator.pop(context);
     if(checkLoginModel.fromJson(jsonDecode(response.body)).userID == "0")
     {
-      return 'ת.ז ו/או הסיסמה שגויים';
+      var uti = new Utils();
+      uti.showMyDialog(context, "Error", "Email or password is wrong!!!");
     }
     else
     {
@@ -95,16 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   fillSavedPars()
   async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String? savedValue = prefs.get('myKey'); // Replace 'myKey' with your actual key
-
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // _txtEmail.text = prefs.getString("email").toString();
-    // _txtPassword.text = prefs.get("pass").toString();
-    // if(_txtEmail.text != "" && _txtPassword.text != "")
-    // {
-    //   checkLogin(context);
-    // }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _txtEmail.text = prefs.getString("email").toString();
+    _txtPassword.text = prefs.get("pass").toString();
+    if(_txtEmail.text != "" && _txtPassword.text != "" && _txtEmail.text != null)
+    {
+      // checkLogin(context);
+    }
   }
 
 
