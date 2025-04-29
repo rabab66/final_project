@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //   SharedPreferences prefs = await SharedPreferences.getInstance();
     //  String? token = prefs.getString("token");
-    var url = "Login/CheckLogin.php?userName=" + _txtEmail.text + "&password=" + _txtPassword.text;
+    var url = "Login/CheckLogin.php?email=" + _txtEmail.text + "&password=" + _txtPassword.text;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
     // setState(() { });
@@ -67,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
       await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).userID!);
       await prefs.setString('email', _txtEmail.text);
       await prefs.setString('pass', _txtPassword.text);
-      // return null;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePageScreen(title: "Home")),
+      );
     }
   }
 
@@ -96,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _txtPassword.text = prefs.get("pass").toString();
     if(_txtEmail.text != "" && _txtPassword.text != "" && _txtEmail.text != null)
     {
-      // checkLogin(context);
+      checkLogin(context);
     }
   }
 
@@ -163,10 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     // Handle login logic here
                     // For now, we will just navigate to the RegisterScreen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "Home")),
-                    );
+                    checkLogin(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF2E7D32), // Green color for the button
