@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(serverPath + url);
     // setState(() { });
     // Navigator.pop(context);
-    if(checkLoginModel.fromJson(jsonDecode(response.body)).result == "0")
+    if(checkLoginModel.fromJson(jsonDecode(response.body)).userID == "0")
     {
       return 'ת.ז ו/או הסיסמה שגויים';
     }
@@ -68,8 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {
       // print("SharedPreferences 1");
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).result!);
-      await prefs.setString('userType', checkLoginModel.fromJson(jsonDecode(response.body)).userTypeID!);
+      await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).userID!);
       await prefs.setString('email', _txtEmail.text);
       await prefs.setString('pass', _txtPassword.text);
       // return null;
