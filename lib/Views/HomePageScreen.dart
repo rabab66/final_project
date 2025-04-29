@@ -1,8 +1,16 @@
+import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:finalproject/Models/Book.dart';
+import 'package:finalproject/Models/Category.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:finalproject/Views/BasketScreen.dart';
 import 'package:finalproject/Views/BookshelfScreen.dart';
+import '../Utils/constants.dart';
 import 'EditProfileScreen.dart';
+import 'package:http/http.dart' as http;
+
+
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key, required this.title});
@@ -15,38 +23,72 @@ class HomePageScreen extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePageScreen> {
   int _selectedIndex = 0;
-  String searchQuery = "";
-  final List<String> categories = ["Business", "Design", "Education", "History", "Literature"];
+  // String searchQuery = "";
+  // final List<String> categories = ["Business", "Design", "Education", "History", "Literature"];
+  List<Category> _categories = [];
+  // List<Map<String, String>> filteredBooks = [];
+  var _categoryID = 0;
+  List<Book> _books = [];
 
-  final List<Map<String, String>> books = [
-    {"title": "Harry Potter", "image": "assets/photos/harrypotter.jpg"},
-    {"title": "The Fault in Our Stars", "image": "assets/photos/Ourstar.jpg"},
-    {"title": "Rich Dad Poor Dad", "image": "assets/photos/richdad.jpg"},
-    {"title": "Wonder", "image": "assets/photos/wonder.jpg"},
-  ];
+  // final List<Map<String, String>> books = [
+  //   {"title": "Harry Potter", "image": "assets/photos/harrypotter.jpg"},
+  //   {"title": "The Fault in Our Stars", "image": "assets/photos/Ourstar.jpg"},
+  //   {"title": "Rich Dad Poor Dad", "image": "assets/photos/richdad.jpg"},
+  //   {"title": "Wonder", "image": "assets/photos/wonder.jpg"},
+  // ];
 
 
-  List<Map<String, String>> filteredBooks = [];
+
+  Future getMyTypes() async {
+    var url = "books/getTypes.php";
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath + url);
+    List<Category> arr = [];
+    for(Map<String, dynamic> i in json.decode(response.body)){
+      arr.add(Category.fromJson(i));
+    }
+    _categories = arr;
+    return arr;
+  }
+
+
+
+  Future getBooks() async {
+    var url = "books/getBooks.php?categoryID=" + _categoryID.toString();
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath + url);
+    List<Book> arr = [];
+    for(Map<String, dynamic> i in json.decode(response.body)){
+      arr.add(Book.fromJson(i));
+    }
+    _books = arr;
+    return arr;
+  }
+
+
+
+
 
   @override
   void initState() {
     super.initState();
-    filteredBooks = books; // Show all books initially
+    // filteredBooks = books; // Show all books initially
+    getMyTypes();
   }
 
-  void _searchBooks(String query) {
-    setState(() {
-      searchQuery = query;
-      filteredBooks = books
-          .where((book) => book["title"]!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    });
-  }
+  // void _searchBooks(String query) {
+  //   setState(() {
+  //     searchQuery = query;
+  //     filteredBooks = books
+  //         .where((book) => book["title"]!.toLowerCase().contains(query.toLowerCase()))
+  //         .toList();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: categories.length,
+      length: _categories.length,
       child: Scaffold(
         backgroundColor: Color(0xFFC8E6C9),
         appBar: AppBar(
@@ -59,32 +101,32 @@ class _MyHomePageState extends State<HomePageScreen> {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.white,
-            tabs: categories.map((category) => Tab(text: category)).toList(),
+            tabs: _categories.map((category) => Tab(text: category.categoryName)).toList(),
           ),
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: _searchBooks,
-                decoration: InputDecoration(
-                  labelText: "Search Books",
-                  hintText: "Enter book title...",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                  prefixIcon: Icon(Icons.search, color: Color(0xFF2E7D32)),
-                  contentPadding: EdgeInsets.symmetric(vertical: 10),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: TextField(
+            //     onChanged: _searchBooks,
+            //     decoration: InputDecoration(
+            //       labelText: "Search Books",
+            //       hintText: "Enter book title...",
+            //       filled: true,
+            //       fillColor: Colors.white,
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(30),
+            //         borderSide: BorderSide.none,
+            //       ),
+            //       prefixIcon: Icon(Icons.search, color: Color(0xFF2E7D32)),
+            //       contentPadding: EdgeInsets.symmetric(vertical: 10),
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: TabBarView(
-                children: categories.map((category) {
+                children: _categories.map((category) {
                   return Padding(
                     padding: EdgeInsets.all(16.0),
                     child: GridView.builder(
@@ -104,17 +146,29 @@ class _MyHomePageState extends State<HomePageScreen> {
                               // Adjust the image size here
                               ClipRRect(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                                child: Image.asset(
-                                  filteredBooks[index]["image"]!,
+                                child:
+
+                                Image.asset(
+                                  _books[index].im!,
                                   width: 100,  // Set a fixed width
                                   height: 150, // Set a fixed height
                                   fit: BoxFit.cover,  // Ensure the image is scaled correctly
                                 ),
+
+                                  CachedNetworkImage(
+                                    imageUrl: 'https://example.com/image.jpg',
+                                    placeholder: (context, url) => CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                    fit: BoxFit.cover,
+                                  )
+
+
+
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  filteredBooks[index]["title"]!,
+                                  _books[index].bookName!,
                                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                                 ),

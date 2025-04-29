@@ -1,11 +1,13 @@
 
 class Book{
-  Book({
 
+  Book({
     this.bookID= 0,
     this.bookName="",
     this.author="",
     this.price=0,
+    this.imageURL="",
+    this.pdfURL="",
   });
 
 
@@ -13,6 +15,8 @@ class Book{
   String bookName;
   String author;
   double price;
+  String imageURL;
+  String pdfURL;
 
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
@@ -20,6 +24,8 @@ class Book{
     bookName: json["bookName"],
     author: json["author"],
     price: json["price"],
+    imageURL: json["imageURL"],
+    pdfURL: json["pdfURL"],
 
   );
 
@@ -29,6 +35,9 @@ class Book{
     "bookName":bookName,
     "author":author,
     "price":price,
+    "imageURL":imageURL,
+    "pdfURL":pdfURL,
+
   };
 
 
