@@ -1,10 +1,12 @@
 class User{
   User({
-    this.userID= "",
-    this.fullName="",
-    this.email="",
-    this.password="",
+    this.userID = "",
+    this.fullName = "",
+    this.email = "",
+    this.password = "",
 });
+
+
   String userID;
   String password;
   String email;
@@ -19,14 +21,10 @@ class User{
 
 
   Map<String , dynamic> toJson() => {
-
-    "userID":userID,
-    "fullName":fullName,
-    "email":email,
-    "password":password,
-
-
-
+    "userID": userID,
+    "fullName": fullName,
+    "email": email,
+    "password": password,
   };
 
 

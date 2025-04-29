@@ -1,18 +1,15 @@
 class checkLoginModel {
-  String? result;
-  String? userTypeID;
+  String? userID;
   String? fullName;
 
   checkLoginModel({
-    this.result,
-    this.userTypeID,
+    this.userID,
     this.fullName,
   });
 
   factory checkLoginModel.fromJson(Map<String, dynamic> json) {
     return checkLoginModel(
-      result: json['result'],
-      userTypeID: json['userTypeID'],
+      userID: json['userID'],
       fullName: json['fullName'],
     );
   }

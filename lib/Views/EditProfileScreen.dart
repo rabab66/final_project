@@ -1,23 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-/* @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}*/
-
 class EditProfileScreen extends StatefulWidget {
   const  EditProfileScreen({super.key, required this.title});
-
 
   final String title;
 
@@ -26,21 +11,12 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class EditProfileScreenPageState extends State<EditProfileScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
         title: Text(widget.title),
       ),
       body: Center(
@@ -64,7 +40,6 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
                   hintText: 'username:',
                 ),
               ),
-
 
               Text("email" ),
               TextField(

@@ -1,36 +1,24 @@
 class Category{
   Category({
-
-    this.caregoryID= 0,
-    this.	cateroryName="",
-
-
-
-
-
+    this.categoryID=0,
+    this.categoryName="",
 });
-  int caregoryID;
-  String 	cateroryName;
+
+
+  int categoryID;
+  String categoryName;
 
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-    caregoryID: json["caregoryID"],
-    cateroryName: json["cateroryName"],
-
-
-
+    categoryID: json["categoryID"],
+    categoryName: json["categoryName"],
   );
 
 
   Map<String , dynamic> toJson() => {
 
-    "caregoryID":caregoryID,
-    "	cateroryName":	cateroryName,
-
-
-
-
-
+    "categoryID": categoryID,
+    "	categoryName": categoryName,
   };
 
 

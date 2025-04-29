@@ -6,14 +6,15 @@ class Book{
     this.bookName="",
     this.author="",
     this.price=0,
-
-
-
   });
+
+
   int bookID;
   String bookName;
   String author;
   double price;
+
+
   factory Book.fromJson(Map<String, dynamic> json) => Book(
     bookID: json["bookID"],
     bookName: json["bookName"],
@@ -24,14 +25,10 @@ class Book{
 
 
   Map<String , dynamic> toJson() => {
-
     "bookID":bookID,
     "bookName":bookName,
     "author":author,
     "price":price,
-
-
-
   };
 
 
