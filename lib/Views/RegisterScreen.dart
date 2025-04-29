@@ -21,6 +21,9 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   final _txtEmail = TextEditingController();
 
   void insertUserFunc(
+
+
+
       BuildContext context,
       String UserName,
       String Email,
@@ -42,7 +45,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
     }
     else {
       var uti = new Utils();
-      uti.showMyDialog(context, "Required", "Please insert your username");
+      uti.showMyDialog(context, "Required", "Please insert all the details");
     }
   }
 
@@ -146,6 +149,10 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                       _txtUserName.text,
                       _txtEmail.text,
                       _txtPassword.text
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "Home")),
                     );
 
                   },
