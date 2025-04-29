@@ -48,6 +48,7 @@ class _MyHomePageState extends State<HomePageScreen> {
       arr.add(Category.fromJson(i));
     }
     _categories = arr;
+    _categoryID = arr[0].categoryID;
     return arr;
   }
 
@@ -62,6 +63,9 @@ class _MyHomePageState extends State<HomePageScreen> {
       arr.add(Book.fromJson(i));
     }
     _books = arr;
+    setState(() {
+
+    });
     return arr;
   }
 
@@ -74,6 +78,7 @@ class _MyHomePageState extends State<HomePageScreen> {
     super.initState();
     // filteredBooks = books; // Show all books initially
     getMyTypes();
+    getBooks();
   }
 
   // void _searchBooks(String query) {
@@ -148,20 +153,19 @@ class _MyHomePageState extends State<HomePageScreen> {
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                                 child:
 
-                                Image.asset(
-                                  _books[index].im!,
-                                  width: 100,  // Set a fixed width
-                                  height: 150, // Set a fixed height
-                                  fit: BoxFit.cover,  // Ensure the image is scaled correctly
-                                ),
+                                // Image.asset(
+                                //   _books[index].im!,
+                                //   width: 100,  // Set a fixed width
+                                //   height: 150, // Set a fixed height
+                                //   fit: BoxFit.cover,  // Ensure the image is scaled correctly
+                                // ),
 
                                   CachedNetworkImage(
-                                    imageUrl: 'https://example.com/image.jpg',
+                                    imageUrl: _books[index].imageURL,
                                     placeholder: (context, url) => CircularProgressIndicator(),
                                     errorWidget: (context, url, error) => Icon(Icons.error),
                                     fit: BoxFit.cover,
                                   )
-
 
 
                               ),
