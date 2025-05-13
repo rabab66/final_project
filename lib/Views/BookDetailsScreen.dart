@@ -6,8 +6,11 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Models/Book.dart';
+import '../Utils/constants.dart';
 
 // class Book {
 //   final String id;
@@ -270,9 +273,25 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     );
   }
 
+
+  Future insertFavorite( ) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+     String? userID = prefs.getString("token");
+    var url = "books/insertFavorite.php?bookID=" + widget.book.bookID.toString() + "&userID=" + userID.toString();
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath+url);
+    //setState(() { });
+  }
+
+
+
   Widget _buildInfoButton(IconData icon, String label) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        insertFavorite();
+        //
+        // insertFavorite.php
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
@@ -410,7 +429,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                _pdfPath != null ? 'Continue Reading' : 'Download & Read',
+                _pdfPath != null ? 'Continue Reading' : 'Download ',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -491,9 +510,13 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     //   setState(() {
     //     _isLoading = false;
     //   });
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text('Error downloading PDF: $e')),
-    //   );
+
+      final url = widget.book.pdfURL;
+
+    launch(url);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('downloading PDF ...')),
+      );
     // }
   }
 }

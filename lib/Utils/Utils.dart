@@ -1,7 +1,5 @@
 
-
 import 'package:flutter/material.dart';
-
 class Utils{
   Future<void> showMyDialog( context,title,content) async {
     return showDialog<void>(
@@ -14,7 +12,6 @@ class Utils{
             child: ListBody(
               children: <Widget>[
                 Text(content),
-
               ],
             ),
           ),

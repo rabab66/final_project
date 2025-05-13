@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _txtPassword.text = prefs.get("pass").toString();
     if(_txtEmail.text != "" && _txtPassword.text != "" && _txtEmail.text != null)
     {
-      checkLogin(context);
+      // checkLogin(context);
     }
   }
 

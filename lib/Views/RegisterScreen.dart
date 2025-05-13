@@ -4,17 +4,12 @@ import 'package:flutter/material.dart';
 import '../Utils/Utils.dart';
 import 'package:http/http.dart' as http;
 import '../Utils/constants.dart';
-
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
-
   final String title;
-
   @override
   State<RegisterScreen> createState() => RegisterscreenPageState();
 }
-
 class RegisterscreenPageState extends State<RegisterScreen> {
   final _txtFullName = TextEditingController();
   final _txtPassword = TextEditingController();
