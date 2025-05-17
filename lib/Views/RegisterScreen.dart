@@ -15,13 +15,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   final _txtPassword = TextEditingController();
   final _txtEmail = TextEditingController();
 
-  void insertUserFunc(
-      BuildContext context,
-      String UserName,
-      String Email,
-      String Password
-
-  ) {
+  void insertUserFunc(BuildContext context, String UserName, String Email, String Password) {
     if (_txtFullName.text != "" && _txtEmail.text != "" &&  _txtPassword.text != "" ) {
       var us = new User();
       us.fullName = _txtFullName.text;
@@ -29,10 +23,10 @@ class RegisterscreenPageState extends State<RegisterScreen> {
       us.password = _txtPassword.text;
       insertUser(context, us);
 
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePageScreen(title: "HomePage")),
+      );
     }
     else {
       var uti = new Utils();
@@ -61,7 +55,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
+        backgroundColor: Color(0xFF64B5F6),
         title: Text(
           widget.title,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -83,7 +77,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
               children: <Widget>[
                 Text(
                   "Username",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueAccent),
                 ),
                 SizedBox(height: 10),
                 TextField(
@@ -100,7 +94,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 SizedBox(height: 20),
                 Text(
                   "Email",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueAccent),
                 ),
                 SizedBox(height: 10),
                 TextField(
@@ -117,7 +111,7 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                 SizedBox(height: 20),
                 Text(
                   "Password",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueAccent),
                 ),
                 SizedBox(height: 10),
                 TextField(
@@ -141,14 +135,9 @@ class RegisterscreenPageState extends State<RegisterScreen> {
                       _txtEmail.text,
                       _txtPassword.text
                     );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePageScreen(title: "Home")),
-                    );
-
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor : Color(0xFF2E7D32), // Green color for the button
+                    backgroundColor : Color(0xFF64B5F6), // Green color for the button
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),

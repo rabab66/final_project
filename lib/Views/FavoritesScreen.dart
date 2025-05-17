@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:finalproject/Views/HomePageScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/Book.dart';
+import '../Utils/Utils.dart';
 import '../Utils/constants.dart';
 import 'BookDetailsScreen.dart';
 import 'package:http/http.dart' as http;
@@ -57,9 +58,47 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     var url = "books/deleteFavorite.php?bookID=" + bookID.toString() + "&userID=" + userID.toString();
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath+url);
-    //setState(() { });
+    setState(() { });
+
   }
 
+
+  void showDelete(bookID)
+  {
+     showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Are you sure you want to delete?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('cancel'),
+              onPressed: ()
+              {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('delete'),
+              onPressed: ()
+              {
+                deleteFavorite(bookID);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +166,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 title: Text(favorite.bookName!, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),), // Icon(Icons.timer),
                                 subtitle: Text(favorite.author!, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),),
                                 trailing: IconButton(
-                                  onPressed: () =>  deleteFavorite(favorite.bookID),
+                                  onPressed: () =>  showDelete(favorite.bookID),
                                   icon: Icon(Icons.delete, color: Colors.red,),
                                 ),
                                 isThreeLine: false,

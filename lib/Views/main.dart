@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF2E7D32),
+        backgroundColor: Color(0xFF64B5F6),
         title: Text(
           widget.title,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text(
                   "Email",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueAccent),
                 ),
                 SizedBox(height: 10),
                 TextField(
@@ -150,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(height: 20),
                 Text(
                   "Password",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color:Colors.blueAccent),
                 ),
                 SizedBox(height: 10),
                 TextField(
@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     checkLogin(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF2E7D32), // Green color for the button
+                    backgroundColor: Color(0xFF64B5F6), // Green color for the button
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                   },
                   style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Color(0xFF2E7D32)),
+                    foregroundColor: MaterialStateProperty.all<Color>(Color(0xFF2196F3)),
                   ),
                   child: Text(
                     'Create a new account',

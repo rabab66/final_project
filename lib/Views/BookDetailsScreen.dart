@@ -1,5 +1,4 @@
 // import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'dart:io';
@@ -8,9 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../Models/Book.dart';
 import '../Utils/constants.dart';
+
+
+
+
 
 // class Book {
 //   final String id;
@@ -281,6 +283,10 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath+url);
     //setState(() { });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('The book has been saved to favorites ')),
+      );
   }
 
 
@@ -341,58 +347,6 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
       ),
     );
   }
-  //
-  // Widget _buildReadingProgress() {
-  //   // Calculate progress percentage
-  //   double progressPercentage = widget.book.currentPage / widget.book.totalPages;
-  //   String percentText = '${(progressPercentage * 100).toStringAsFixed(0)}%';
-  //
-  //   return Padding(
-  //     padding: const EdgeInsets.all(16.0),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: [
-  //         const Text(
-  //           'Your Progress',
-  //           style: TextStyle(
-  //             fontSize: 18,
-  //             fontWeight: FontWeight.bold,
-  //           ),
-  //         ),
-  //         const SizedBox(height: 16),
-  //         LinearPercentIndicator(
-  //           lineHeight: 10.0,
-  //           percent: progressPercentage,
-  //           backgroundColor: Colors.grey[200],
-  //           progressColor: Colors.blue,
-  //           barRadius: const Radius.circular(8),
-  //           padding: EdgeInsets.zero,
-  //         ),
-  //         const SizedBox(height: 8),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //           children: [
-  //             Text(
-  //               'Page ${widget.book.currentPage} of ${widget.book.totalPages}',
-  //               style: TextStyle(
-  //                 fontSize: 14,
-  //                 color: Colors.grey[600],
-  //               ),
-  //             ),
-  //             Text(
-  //               percentText,
-  //               style: const TextStyle(
-  //                 fontSize: 14,
-  //                 fontWeight: FontWeight.bold,
-  //                 color: Colors.blue,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget _buildReadButton() {
     return Padding(
@@ -711,43 +665,3 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
     );
   }
 }
-
-
-
-
-
-// Example of how to use this screen in your app
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Books App',
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//         scaffoldBackgroundColor: Colors.white,
-//       ),
-//       home: BookDetailsScreen(
-//         book: Book(
-//           id: '12345',
-//           title: 'The Great Gatsby',
-//           author: 'F. Scott Fitzgerald',
-//           coverUrl: 'https://via.placeholder.com/300x450',
-//           description:
-//           'The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, near New York City, the novel depicts first-person narrator Nick Carraway\'s interactions with mysterious millionaire Jay Gatsby and Gatsby\'s obsession to reunite with his former lover, Daisy Buchanan.',
-//           genre: 'Classic',
-//           rating: 4.5,
-//           totalPages: 180,
-//           pdfUrl: 'https://www.example.com/books/the-great-gatsby.pdf',
-//           currentPage: 45,
-//         ),
-//       ),
-//     );
-//   }
-// }
